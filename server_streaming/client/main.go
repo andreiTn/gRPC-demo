@@ -1,11 +1,11 @@
 package main
 
 import (
-	"google.golang.org/grpc"
-	"github.com/andreiTn/gRPC-stuff/server_streaming/pb"
 	"context"
-	"io"
 	"github.com/andreiTn/gRPC-stuff"
+	"github.com/andreiTn/gRPC-stuff/server_streaming/pb"
+	"google.golang.org/grpc"
+	"io"
 	"log"
 )
 
@@ -30,7 +30,7 @@ func main() {
 		log.Fatalf("Stream failed: %v", err)
 	}
 
-	for  {
+	for {
 		res, err := msgStream.Recv()
 
 		if err != nil {
@@ -43,6 +43,6 @@ func main() {
 		log.Printf("Chunk: %s", res)
 	}
 
-	END:
-		log.Println("Exit...")
+END:
+	log.Println("Exit...")
 }
