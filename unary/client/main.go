@@ -2,23 +2,30 @@ package main
 
 import (
 	"google.golang.org/grpc"
-	"github.com/andreiTn/gRPC-unary/pb"
 	"log"
 	"context"
-	"fmt"
+	"github.com/andreiTn/gRPC-stuff/unary/pb"
 )
 
 func main() {
+	// Connect to a gRPC server
 	conn, err := grpc.Dial("0.0.0.0:3100", grpc.WithInsecure())
 
 	if err != nil {
 		log.Fatalf("Could not dial: %v", err)
 	}
+	// Close connection at the end
 	defer conn.Close()
 
+	// Create a new client
 	client := pingpong.NewPPServiceClient(conn)
 
+	sendPing(client)
+}
 
+func sendPing(client pingpong.PPServiceClient)  {
+	// Call the PingPong method defined in server.go
+	// PingPong(context.Context, *pingpong.PPRequest) (*pingpong.PPResponse, error)
 	response, err := client.PingPong(context.Background(), &pingpong.PPRequest{
 		Ping: "ping",
 	})
@@ -26,5 +33,5 @@ func main() {
 	if err != nil {
 		log.Fatalf("Request error: %v", err)
 	}
-	fmt.Println(response.Pong)
+	log.Printf("Response: %v", response.Pong)
 }

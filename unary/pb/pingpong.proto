@@ -7,6 +7,7 @@ message PPResponse {
     string pong = 1;
 }
 
+// A simple request/response service
 service PPService {
     rpc PingPong(PPRequest) returns (PPResponse) {};
 }
