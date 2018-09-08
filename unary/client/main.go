@@ -1,10 +1,10 @@
 package main
 
 import (
-	"google.golang.org/grpc"
-	"log"
 	"context"
 	"github.com/andreiTn/gRPC-stuff/unary/pb"
+	"google.golang.org/grpc"
+	"log"
 )
 
 func main() {
@@ -23,7 +23,7 @@ func main() {
 	sendPing(client)
 }
 
-func sendPing(client pingpong.PPServiceClient)  {
+func sendPing(client pingpong.PPServiceClient) {
 	// Call the PingPong method defined in server.go
 	// PingPong(context.Context, *pingpong.PPRequest) (*pingpong.PPResponse, error)
 	response, err := client.PingPong(context.Background(), &pingpong.PPRequest{
