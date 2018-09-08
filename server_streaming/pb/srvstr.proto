@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message MsgReq{
+    uint32 rows = 1;
+}
+message MsgRes {
+    string row = 1;
+}
+
+// Server streaming service
+service MsgService {
+    rpc GetMsg(MsgReq) returns (stream MsgRes) {};
+}
