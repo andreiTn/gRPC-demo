@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+message Req {
+    string msg = 1;
+}
+message Res {
+    string msg = 1;
+}
+
+service StreamService {
+    rpc Stream(stream Req) returns (Res) {};
+}
