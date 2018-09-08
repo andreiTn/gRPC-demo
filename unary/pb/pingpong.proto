@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+message PPRequest {
+    string ping = 1;
+}
+message PPResponse {
+    string pong = 1;
+}
+
+service PPService {
+    rpc PingPong(PPRequest) returns (PPResponse) {};
+}
