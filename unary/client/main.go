@@ -5,14 +5,17 @@ import (
 	"github.com/andreiTn/gRPC-stuff/unary/pb"
 	"google.golang.org/grpc"
 	"log"
+	"github.com/andreiTn/gRPC-stuff"
 )
+
+var logger = gRPC_stuff.Logger{}
 
 func main() {
 	// Connect to a gRPC server
 	conn, err := grpc.Dial("0.0.0.0:3100", grpc.WithInsecure())
 
 	if err != nil {
-		log.Fatalf("Could not dial: %v", err)
+		logger.DialError(err)
 	}
 	// Close connection at the end
 	defer conn.Close()
