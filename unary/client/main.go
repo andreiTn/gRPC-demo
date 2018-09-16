@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	"github.com/andreiTn/gRPC-stuff"
 	"github.com/andreiTn/gRPC-stuff/unary/pb"
 	"google.golang.org/grpc"
 	"log"
-	"github.com/andreiTn/gRPC-stuff"
 )
 
 var logger = gRPC_stuff.Logger{}

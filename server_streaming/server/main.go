@@ -1,25 +1,24 @@
 package main
 
 import (
-	"net"
-	"log"
-	"google.golang.org/grpc"
+	"github.com/andreiTn/gRPC-stuff"
 	"github.com/andreiTn/gRPC-stuff/server_streaming/pb"
+	"google.golang.org/grpc"
+	"log"
+	"net"
 	"strconv"
 	"time"
-	"github.com/andreiTn/gRPC-stuff"
 )
 
 var logger = gRPC_stuff.Logger{}
 
-type Server struct {}
-
+type Server struct{}
 
 //GetMsg(*MsgReq, MsgService_GetMsgServer) error
-func (*Server) GetMsg(req *srvstr.MsgReq, stream srvstr.MsgService_GetMsgServer) (error)  {
+func (*Server) GetMsg(req *srvstr.MsgReq, stream srvstr.MsgService_GetMsgServer) error {
 	log.Printf("Get rows: %d", req.Rows)
 
-	for i := 0; i <= int(req.Rows); i ++  {
+	for i := 0; i <= int(req.Rows); i++ {
 		message := "Row: " + strconv.Itoa(i)
 
 		stream.Send(&srvstr.MsgRes{
